@@ -7,7 +7,7 @@
 
 ## ⭐ Introduction
 
-This project is a Full Stack Todo List Application which is built using the MongoDB, NodeJS, ExpressJS, CSS, Javascript. It implements all the basic functionalities of a todo list, i.e, CRUD Operations (Create Read Update Delete).
+This project is a Full Stack Todo List Application built with Docker and Kubernetes support, using MongoDB, NodeJS, ExpressJS, CSS, and JavaScript. It implements comprehensive todo list functionalities including CRUD operations and containerized deployment.
 
 -  Users are able to Create new tasks.
 -  Users are able to Read the created tasks data.
@@ -32,10 +32,10 @@ This project is a Full Stack Todo List Application which is built using the Mong
 **Quick Start:**
 ```bash
 # Clone the repository
-git clone https://github.com/Ayush-Kanduri/FullStack-Todo-List-Application.git
+git clone https://github.com/RoshanTiwari07/todo-app-docker-k8s.git
 
 # Navigate to project directory
-cd FullStack-Todo-List-Application
+cd todo-app-docker-k8s
 
 # Build and start all services with Docker Compose
 docker-compose up --build
@@ -62,7 +62,47 @@ docker-compose down --volumes --remove-orphans
 docker-compose up --build
 ```
 
-### 💻 **Option 2: Local Development Setup**
+### ☸️ **Option 2: Kubernetes Setup**
+
+**Prerequisites:**
+- Kubernetes cluster (Docker Desktop, Minikube, or cloud provider)
+- kubectl configured
+
+**Deploy to Kubernetes:**
+```bash
+# Navigate to Kubernetes manifests
+cd devops\ prep
+
+# Apply namespace
+kubectl apply -f namespace.yml
+
+# Apply all configurations
+kubectl apply -f .
+
+# Check deployment status
+kubectl get pods -n todo-app
+
+# Access the application
+kubectl port-forward service/todo-app-service 8000:8000 -n todo-app
+# Then visit http://localhost:8000
+```
+
+**Kubernetes Commands:**
+```bash
+# Check all resources
+kubectl get all -n todo-app
+
+# View logs
+kubectl logs -f deployment/todo-app -n todo-app
+
+# Scale the application
+kubectl scale deployment todo-app --replicas=3 -n todo-app
+
+# Delete all resources
+kubectl delete namespace todo-app
+```
+
+### 💻 **Option 3: Local Development Setup**
 
 **Prerequisites:**
 - NodeJS (v16 or higher)
@@ -72,8 +112,8 @@ docker-compose up --build
 **Setup Steps:**
 1. **Clone & Install:**
    ```bash
-   git clone https://github.com/Ayush-Kanduri/FullStack-Todo-List-Application.git
-   cd FullStack-Todo-List-Application
+   git clone https://github.com/RoshanTiwari07/todo-app-docker-k8s.git
+   cd todo-app-docker-k8s
    npm install
    ```
 
@@ -106,6 +146,7 @@ docker-compose up --build
 | Mode | DEPLOYMENT | ENVIRONMENT | Description |
 |------|------------|-------------|-------------|
 | Docker | `docker` | `development` | Docker containers with auto-reload |
+| Kubernetes | `docker` | `production` | K8s deployment with scaling |
 | Local Dev | `local` | `development` | Local MongoDB with live reload |
 | Local Prod | `local` | `production` | Local MongoDB production mode |
 
@@ -166,6 +207,7 @@ For any issues related to the project, raise an ISSUE in the respective Reposito
 <img height="140" width="140" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMX7p-_Zo1LqsEfO1v3B6Zw0Jgvhk4vo1fKA&usqp=CAU">
 <img height="140" width="250" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRASBParCnQhsRkKZ8opkkRjtk9XJ-MHdy0jA&usqp=CAU">
 <img height="140" width="140" src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png">
+<img height="140" width="140" src="https://kubernetes.io/images/kubernetes-horizontal-color.png">
 <img height="140" width="140" src="https://code.visualstudio.com/assets/apple-touch-icon.png">
 </p>
 
@@ -180,6 +222,7 @@ For any issues related to the project, raise an ISSUE in the respective Reposito
 -  Framework: ExpressJS
 -  Database: MongoDB
 -  Containerization: Docker & Docker Compose
+-  Orchestration: Kubernetes
 -  Version Control System: Git
 -  VCS Hosting: GitHub
 -  Programming / Scripting: JavaScript
@@ -191,9 +234,9 @@ For any issues related to the project, raise an ISSUE in the respective Reposito
 
 ## 🔗 Links
 
-> ## Checkout the Website [Web Application](https://fullstack-todo-list-application.onrender.com)
+> ## Checkout the Repository [GitHub](https://github.com/RoshanTiwari07/todo-app-docker-k8s)
 >
-> ## Checkout the Application Demo Video [YouTube](https://youtu.be/2VyxSQAE5mo)
+> ## Live Application [Web Application](http://localhost:8000) (After Docker setup)
 
 <br/>
 
@@ -206,12 +249,6 @@ For any issues related to the project, raise an ISSUE in the respective Reposito
 
 ## 🐦 Follow Me:
 
-> [Dev Community](https://dev.to/ayushkanduri)
-
-> [Twitter](https://twitter.com/ayush_codes)
-
-> [LinkedIn](https://www.linkedin.com/in/ayushkanduri/)
-
-> [YouTube](https://www.youtube.com/channel/UC6c1ajC_2jF7wQp7Y13t2bg)
+> [GitHub](https://github.com/RoshanTiwari07)
 
 I hope you like the project. Thanks for reading :)

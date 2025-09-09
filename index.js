@@ -35,6 +35,12 @@ app.set("layout extractScripts", true);
 
 //Middleware - URL Encoder
 app.use(express.urlencoded({ extended: true }));
+
+// Health check endpoint for Docker
+app.get('/health', (req, res) => {
+	res.status(200).json({ status: 'OK', message: 'Server is healthy' });
+});
+
 //Middleware - App calls index.js - Route File, whenever '/' route is called in the request
 app.use("/", route);
 

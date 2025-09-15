@@ -1,0 +1,28 @@
+@Library('Shared')_
+pipeline{
+    agent { label 'dev-server'}
+    
+    stages{
+        stage("Code clone"){
+            steps{
+            clone("","main")
+            }
+        }
+        stage("Code Build"){
+            steps{
+            dockerbuild("todo-app","latest")
+            }
+        }
+        stage("Push to DockerHub"){
+            steps{
+                dockerpush("dockerHubCreds","todo-app","latest")
+            }
+        }
+        stage("Deploy"){
+            steps{
+                deploy()
+            }
+        }
+        
+    }
+}

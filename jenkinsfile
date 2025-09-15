@@ -5,7 +5,7 @@ pipeline{
     stages{
         stage("Code clone"){
             steps{
-            clone("","main")
+            clone("https://github.com/RoshanTiwari07/todo-app-docker-k8s.git","main")
             }
         }
         stage("Code Build"){

@@ -10,12 +10,16 @@ pipeline{
         }
         stage("Code Build"){
             steps{
+                srcipt {
             docker.build("todo-app","latest")
+                }
             }
         }
         stage("Push to DockerHub"){
             steps{
-                docker.push("dockerHubCreds","todo-app","latest")
+                srcipt {
+                docker_push("dockerHubCreds","todo-app","latest")
+                }
             }
         }
         stage("Deploy"){

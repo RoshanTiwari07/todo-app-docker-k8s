@@ -10,12 +10,12 @@ pipeline{
         }
         stage("Code Build"){
             steps{
-            dockerbuild("todo-app","latest")
+            docker.build("todo-app","latest")
             }
         }
         stage("Push to DockerHub"){
             steps{
-                dockerpush("dockerHubCreds","todo-app","latest")
+                docker.push("dockerHubCreds","todo-app","latest")
             }
         }
         stage("Deploy"){
